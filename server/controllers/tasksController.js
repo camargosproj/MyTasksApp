@@ -37,7 +37,7 @@ const updateTask = async (req, res) => {
       const {id} = req.params;
       const {description} = req.body;
       // Update the todo in the database using the pool query and the id and description
-      const updateTodo = await updateSingleTask("todo","description","todo_id",description,id);
+      await updateSingleTask("todo","description","todo_id",description,id);
       // Send the updated todo back to the client
       res.json("Task was updated");
     } catch (error) {

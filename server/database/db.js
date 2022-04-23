@@ -22,14 +22,21 @@ const selectTaskById = async (table, column,id) => {
 };
 // Create a new task in the database
 const insertTask = async (table, column, description) => {
-  const task = await pool.query(`INSERT INTO ${table} ${column} VALUES ($1) RETURNING *`,[description]);
-  return task.rows[0];
-  //const task = await pool.query(`INSERT INTO todo (description) VALUES ($1) RETURNING *`,[description]);
+  try{  
+    const task = await pool.query(`INSERT INTO ${table} (${column}) VALUES ($1) RETURNING *`,[description]);
+    return task.rows[0];
+  }catch(error){
+    res.json(error);
+  }
 }
 
 // Update a task in the database
 const updateSingleTask = async (table, column, conditionColumn, description, id) => {
-  await pool.query(`UPDATE ${table} SET ${column} = $1 WHERE ${conditionColumn} = $2`, [description, id]);
+  try{
+    await pool.query(`UPDATE ${table} SET ${column} = $1 WHERE ${conditionColumn} = $2`, [description, id]);
+  }catch(error){
+    res.json(error);
+  }
 }
 
 // Delete a task from the database

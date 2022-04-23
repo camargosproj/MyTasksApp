@@ -1,5 +1,5 @@
 const express = require('express');
-const {getAllTasks, getTaskByid, createTask, updateTask} = require('../controllers/tasksController');
+const {getAllTasks, getTaskByid, createTask, updateTask, deleteTask} = require('../controllers/tasksController');
 
 const tasksRouter = express.Router();
 
@@ -10,13 +10,13 @@ tasksRouter.get('/tasks', getAllTasks);
 tasksRouter.get("/tasks/:id", getTaskByid);
 
 // Create a todo
-tasksRouter.post('/task', createTask);
+tasksRouter.post('/tasks', createTask);
 
 // Update a todo
 tasksRouter.put("/tasks/:id", updateTask);
 
 // Delete a todo
-tasksRouter.delete("/tasks/:id", )
+tasksRouter.delete("/tasks/:id", deleteTask);
 
 module.exports = {
   tasksRouter

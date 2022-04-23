@@ -7,10 +7,10 @@ const doneTasksRouter = express.Router();
 doneTasksRouter.get('/donetasks', getAllDoneTasks);
 
 // Save a done task to the database
-doneTasksRouter.post('/donetask', postDoneTask)
+doneTasksRouter.post('/donetasks', postDoneTask)
 
 // Delete a todo
-doneTasksRouter.delete("/donetask/:id", deleteDoneTask);
+doneTasksRouter.delete("/donetasks/:id", deleteDoneTask);
 
 module.exports = {
     doneTasksRouter
