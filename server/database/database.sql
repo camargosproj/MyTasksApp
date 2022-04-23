@@ -4,3 +4,8 @@ CREATE TABLE todo(
     todo_id SERIAL PRIMARY KEY,
     description VARCHAR(255)
 );
+
+CREATE TABLE done_todo(
+    todo_id SERIAL PRIMARY KEY,
+    description VARCHAR(255)
+);
