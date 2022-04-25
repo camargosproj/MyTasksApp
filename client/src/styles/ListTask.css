@@ -1,0 +1,60 @@
+.table{
+    width: 50%;
+    min-width: 350px;
+    margin: 0 auto;
+}
+
+.table button{
+    margin-left: .6rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    place-items: center;
+    font-size: 1rem;
+}
+
+
+.edit-btn:hover{
+    color: #1159df;
+}
+.delete-btn:hover{
+    color: #df1122;
+
+}
+.done-btn:hover{
+    color: #16df0f;
+}
+
+.table-icons{
+    text-align: center;
+}
+    
+
+.table td{
+    border-bottom: rgba(20, 20, 20, 0.301) solid 1px;
+}
+
+.table-row{
+    line-height: 2rem;
+}
+.table-row:hover{
+    transform: translateX(.5rem);
+    transition: .3s;
+}
+
+.head-row th{
+    border-bottom: rgba(20, 20, 20, 0.301) solid 2px;
+
+}
+
+.select{
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.select option{
+    font-weight: bold;
+}

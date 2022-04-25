@@ -1,0 +1,35 @@
+.input-container{
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-box{
+    width: 30%;
+    height: 2rem;
+    min-width: 350px;
+    border: none;
+    border-bottom: black solid 2px;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    outline: none;
+}
+
+.form button{
+    margin-left:.6rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+
+}
+
+.form button i{
+    font-size: 1rem;
+}
+
+

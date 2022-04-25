@@ -1,0 +1,32 @@
+.taggle-mode-container{
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    width: 4rem;
+    height: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.616);
+    border-radius: 20% / 50%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.taggle-mode-container i{
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.616);
+    border: black solid 1px;
+    border-radius: 50%;
+    transition: all .2s ease-in-out;
+}
+
+
+
+#dark-toggle{
+    transition: all .2s ease-in-out;
+    background-color: yellow;
+    color: black;
+    transform: translateX(2.5rem) rotate(360deg);
+}

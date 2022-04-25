@@ -1,15 +1,18 @@
-import React, {useEffect, useState} from "react";
-import EditTodo from "./EditTodo";
+import React, {useEffect, useState, Fragment} from "react";
+import EditTask from "./EditTask";
+import "../styles/ListTask.css";
+import {} from "./Header";
 
-let URL = "todos/";
-let doneUrl = "donetodos/";
-const ListTodo = () => {
+let URL = "tasks/";
+let doneUrl = "donetasks/";
+const ListTask = () => {
 
     // Hooks
     const [todos, setTodos] = useState([]);
     const [show, setShow] = useState(false);
     const [disable, setDisable] = useState(false);
     const [editTodo, setEditTodo] = useState({});
+    
 
     // Delete function
     const deleteTodo = async (id) => {
@@ -37,21 +40,17 @@ const ListTodo = () => {
     const fetchTodos = async (endpoint) => {
         try {
             const response = await fetch(endpoint);
-            const data = await response.json();
+            const data = await response.json();                      
             setTodos(data);
-            
         } catch (error) {
             console.log(error);
         }
     }
-    useEffect(() => {
-        fetchTodos(URL);
-    },[])
   
+    
     // Handle modal and get the id of the todo to edit
     const handleModal = (id) => {
         setEditTodo(todos.find(todo => todo.todo_id === id));
-        console.log(editTodo);
         setShow(true)
     }
     // Post done tasks to the backend
@@ -59,7 +58,7 @@ const ListTodo = () => {
         try {
             if (description) {
                 const body = {description};
-                await fetch("donetodos",
+                await fetch("donetasks",
                 {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
@@ -73,7 +72,6 @@ const ListTodo = () => {
     }; 
     const handleStatus = (id) => {
         const {description} = todos.find(todo => todo.todo_id === id);
-        console.log(description);
         postDone(description);
         deleteTodo(id)
     }
@@ -91,38 +89,47 @@ const ListTodo = () => {
         }
 
     }
+    useEffect(() => {
+        fetchTodos(URL);
+    },[])
 
     return (
-    <table className="todo-table styled-table">
-        <thead>
-            <tr>
-                <th>Description</th>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>
-                <select className="custom-select" onChange={(e) => handleSelect(e.target.value)}>
-                    <option value="Pedding">Pedding</option>
-                    <option value="Done" >Done</option>
-                </select>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-               {todos.map(todo => (
-                   <tr key={todo.todo_id}>
-                        <td>{todo.description}                        
-                        </td>
-                        <td>
-                            <button className="btn-hover" disabled={disable} onClick={() => handleModal(todo.todo_id)}>Edit</button> 
-                            <EditTodo onClose={() => setShow(false)} show={show} todo={editTodo}/>
-                        </td>
-                        <td><button className="delete-btn btn-hover" onClick={() => deleteTodo(todo.todo_id)}>Delete</button></td>
-                        <td><button disabled={disable} onClick={() => handleStatus(todo.todo_id)}>Done</button></td>
-                   </tr>
-               ))}        
-        </tbody>
-    </table>
+        <Fragment>
+        <EditTask onClose={() => setShow(false)} show={show} todo={editTodo}/>
+        <table  className="table">
+            <thead>
+                <tr className="head-row">
+                    <th>Description</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>
+                    <select className="select" onChange={(e) => handleSelect(e.target.value)}>
+                        <option value="Pedding">Pedding</option>
+                        <option value="Done" >Done</option>
+                    </select>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {todos.map(todo => (
+                    <tr className="table-row" key={todo.todo_id}>
+                            <td>{todo.description}                        
+                            </td>
+                            <td className="table-icons">
+                                <button className="edit-btn" disabled={disable} onClick={() => handleModal(todo.todo_id)}><i className="fa fa-edit"></i></button> 
+                            </td>
+                            <td className="table-icons">
+                                <button className="delete-btn" onClick={() => deleteTodo(todo.todo_id)}><i className="fa fa-trash"></i></button>
+                            </td>
+                            <td className="table-icons">
+                                <button className="done-btn" disabled={disable} onClick={() => handleStatus(todo.todo_id)}><i className="fa fa-check-square-o"></i></button>
+                            </td>
+                    </tr>
+                ))}        
+            </tbody>
+        </table>
+        </Fragment>
     );
 }
  
-export default ListTodo;
+export default ListTask;

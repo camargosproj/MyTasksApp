@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import addIcon from "../add-icon.png";
+import "../styles/InputTask.css";
 import Loading from "./Loading";
 
-const InputTodo = () => {
+const InputTask = () => {
     const [description, setDescription] = useState("");
     const [isPending, setIsPending] = useState(false);
 
@@ -11,7 +11,7 @@ const InputTodo = () => {
         try {
             if (description) {
                 const body = {description};
-                await fetch("todos",
+                await fetch("tasks",
                 {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
@@ -32,7 +32,7 @@ const InputTodo = () => {
             setIsPending(true);
             e.preventDefault();
             e.target.value = "";
-            const response = await fetch("try");
+            const response = await fetch("surpriseme");
             const data = await response.json();
             setDescription(e.target.value = data.activity);
         
@@ -43,17 +43,15 @@ const InputTodo = () => {
     } 
  
     return (        
-        <div className="input-todo">
-            <form onSubmit={onSubmit}>
-                <input id="input-box" value={description} onChange={e => setDescription(e.target.value)} type="text" placeholder="What do you need to do?" />
-                <button id="add">Add<img id="addIcon" src={addIcon} alt="Add icon"/></button>
-                <button id="rdm-task" onClick={(e) => getData(e)}>Random Task<img id="addIcon" src={addIcon} alt="Add icon"/></button>
-                {isPending && <Loading/>}
-               
-
+        <div className="input-container">
+            <form className="form" onSubmit={onSubmit}>
+                <input className="input-box" value={description} onChange={e => setDescription(e.target.value)} type="text" placeholder="What do you need to do?" ></input>
+                <button onClick={(e) => getData(e)}><i className="fa fa-random"></i></button>
+                <button><i className="fa fa-arrow-right"></i></button>
+                {isPending && <Loading/>}             
             </form>
         </div>
     );
 }
  
-export default InputTodo;
+export default InputTask;

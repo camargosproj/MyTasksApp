@@ -1,20 +1,34 @@
-import React, {Fragment, Component } from 'react';
+import React, {Fragment, useState } from 'react';
+import "./styles/App.css";
 // Components 
-import InputTodo from './components/InputTodo';
-import ListTodo from './components/ListTodo';
+import InputTodo from './components/InputTask';
+import ListTodo from './components/ListTask';
+import Header from './components/Header';
+import ToggleButton from './components/ToggleButton';
+import Footer from './components/Footer';
 
-class App extends Component {
-  render() {
+
+
+const App = () => {
+    const [isdark, setIsdark] = useState(false);
     return (
       <Fragment>
-        <div className="container">
-          <h1>MyTasks APP</h1>
-          <InputTodo />
-          <ListTodo />
-        </div>
+        <ToggleButton setMode={() =>setIsdark(!isdark)} isDark={isdark}/>
+            {isdark ?
+              (<div id="dark-mode" className="container">
+              <Header setMode={isdark}/>
+              <InputTodo />
+              <ListTodo />
+            </div>) :
+            (<div className="container">
+            <Header setMode={isdark}/>
+            <InputTodo />
+            <ListTodo />
+          </div>)
+          }
+          <Footer/>
       </Fragment>
     );
-  }
 }
 
 export default App;

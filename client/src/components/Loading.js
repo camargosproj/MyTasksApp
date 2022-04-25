@@ -1,10 +1,13 @@
-import React, { Fragment} from "react";
+import React from "react";
+import "../styles/Loading.css";
+
 
 const Loading = () => {
     return ( 
-        <Fragment>
-            <div class="loader"></div>
-        </Fragment>        
+        <div className="spinner">
+            <div className="double-bounce1"></div>
+            <div className="double-bounce2"></div>
+        </div>        
     );
 }
  
