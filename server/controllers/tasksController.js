@@ -41,7 +41,7 @@ const updateTask = async (req, res) => {
       // Send the updated todo back to the client
       res.json("Task was updated");
     } catch (error) {
-      res.json(err.message);
+      res.json(error);
     }
 }
 
