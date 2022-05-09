@@ -2,7 +2,7 @@ const {selectAllTask, selectTaskById, insertTask, updateSingleTask, deleteSingle
 
 const getAllTasks = async (req, res) => {
     try {
-        const allTasks = await selectAllTask("todo");
+        const allTasks = await selectAllTask("todo","isdone",false);
         res.json(allTasks);
     }catch (error) {
         res.json(error);  

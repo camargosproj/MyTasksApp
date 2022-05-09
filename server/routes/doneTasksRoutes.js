@@ -1,5 +1,5 @@
 const express = require('express');
-const {getAllDoneTasks,postDoneTask,deleteDoneTask} = require('../controllers/doneTasksController');
+const {getAllDoneTasks,updateDoneTask,deleteDoneTask} = require('../controllers/doneTasksController');
 
 const doneTasksRouter = express.Router();
 
@@ -7,7 +7,7 @@ const doneTasksRouter = express.Router();
 doneTasksRouter.get('/donetasks', getAllDoneTasks);
 
 // Save a done task to the database
-doneTasksRouter.post('/donetasks', postDoneTask)
+doneTasksRouter.put('/donetasks', updateDoneTask)
 
 // Delete a todo
 doneTasksRouter.delete("/donetasks/:id", deleteDoneTask);

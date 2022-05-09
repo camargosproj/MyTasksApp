@@ -10,8 +10,8 @@ pool.connect((err) => {
 });
 
 // Get all tasks from the database
-const selectAllTask = async (table) => {
-  const tasks = await pool.query(`SELECT * FROM ${table}`);
+const selectAllTask = async (table,column,value) => {
+  const tasks = await pool.query(`SELECT * FROM ${table} WHERE "${column}" = ${value}`);
   return tasks.rows;
 };
 
@@ -31,9 +31,9 @@ const insertTask = async (table, column, description) => {
 }
 
 // Update a task in the database
-const updateSingleTask = async (table, column, conditionColumn, description, id) => {
+const updateSingleTask = async (table, column, conditionColumn, value, id) => {
   try{
-    await pool.query(`UPDATE ${table} SET ${column} = $1 WHERE ${conditionColumn} = $2`, [description, id]);
+    await pool.query(`UPDATE ${table} SET "${column}" = $1 WHERE ${conditionColumn} = $2`, [value, id]);
   }catch(error){
     res.json(error);
   }
