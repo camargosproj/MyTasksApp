@@ -11,7 +11,7 @@ const Header = ({setMode}) => {
                     <h1>MyTasks APP</h1>
                     <img src="./favicon.png" alt="Logo" />
                 </div>
-                 <p>Gerencie suas tarefas de maneira simples!</p>
+                 <p>Easily manage your tasks!</p>
         </header>
         );
     }
@@ -21,7 +21,7 @@ const Header = ({setMode}) => {
                 <h1>MyTasks APP</h1>
                 <img src="./favicon.png" alt="Logo" />
             </div>
-            <p>Gerencie suas tarefas de maneira simples!</p>
+            <p>Easily manage your tasks!</p>
         </header>
      );
 }
