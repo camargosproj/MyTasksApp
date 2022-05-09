@@ -1,10 +1,9 @@
 import React, {useEffect, useState, Fragment} from "react";
 import EditTask from "./EditTask";
 import "../styles/ListTask.css";
-import {} from "./Header";
 
-let URL = "tasks/";
-let doneUrl = "donetasks/";
+let URL = "api/tasks/";
+let doneUrl = "api/donetasks/";
 const ListTask = () => {
 
     // Hooks
@@ -40,7 +39,7 @@ const ListTask = () => {
     const fetchTodos = async (endpoint) => {
         try {
             const response = await fetch(endpoint);
-            const data = await response.json();                      
+            const data = await response.json();  
             setTodos(data);
         } catch (error) {
             console.log(error);
@@ -54,13 +53,13 @@ const ListTask = () => {
         setShow(true)
     }
     // Post done tasks to the backend
-    const postDone = async (description) => {
+    const updateDone = async (id, description) => {
         try {
             if (description) {
-                const body = {description};
-                await fetch("donetasks",
+                const body = {id, description};
+                await fetch("api/donetasks",
                 {
-                    method: "POST",
+                    method: "PUT",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(body)
                 })
@@ -72,8 +71,7 @@ const ListTask = () => {
     }; 
     const handleStatus = (id) => {
         const {description} = todos.find(todo => todo.todo_id === id);
-        postDone(description);
-        deleteTodo(id)
+        updateDone(id,description);
     }
 
     const handleSelect = (selected) => {
@@ -84,7 +82,6 @@ const ListTask = () => {
         }
         else{
             setDisable(false);
-
             fetchTodos(URL);
         }
 

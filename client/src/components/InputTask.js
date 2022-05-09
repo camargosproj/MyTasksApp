@@ -11,7 +11,7 @@ const InputTask = () => {
         try {
             if (description) {
                 const body = {description};
-                await fetch("tasks",
+                await fetch("api/tasks",
                 {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
@@ -32,7 +32,7 @@ const InputTask = () => {
             setIsPending(true);
             e.preventDefault();
             e.target.value = "";
-            const response = await fetch("surpriseme");
+            const response = await fetch("api/surpriseme");
             const data = await response.json();
             setDescription(e.target.value = data.activity);
         

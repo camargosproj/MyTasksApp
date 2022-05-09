@@ -15,7 +15,7 @@ const EditTask = ({todo, show, onClose}) => {
             return alert("Por favor adicione uma descrição");
           }
           await fetch(
-            `tasks/${todo.todo_id}`,
+            `api/tasks/${todo.todo_id}`,
             {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
